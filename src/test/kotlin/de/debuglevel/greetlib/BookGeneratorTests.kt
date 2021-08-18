@@ -6,8 +6,9 @@ package de.debuglevel.greetlib
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class LibraryTest {
-    @Test fun testSomeLibraryMethod() {
+class BookGeneratorTests {
+    @Test
+    fun testSomeLibraryMethod() {
         val test = BookGenerator.generate("test").content
         assertTrue(test.contains("bla test"))
     }
