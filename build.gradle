@@ -12,10 +12,19 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+
+    // Kotlin annotations processor (needed by Micronaut)
+    id 'org.jetbrains.kotlin.kapt' version '1.4.20'
 }
 
 repositories {
     mavenCentral()
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -36,4 +45,20 @@ dependencies {
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
+
+
+
+
+    // Micronaut
+    /// Bill of Materials, which defines dependency versions
+    implementation platform("io.micronaut:micronaut-bom:2.5.3")
+    kapt platform("io.micronaut:micronaut-bom:2.5.3")
+//    kaptTest platform("io.micronaut:micronaut-bom:2.5.3")
+    // Core
+    implementation "io.micronaut:micronaut-runtime"
+    implementation "javax.annotation:javax.annotation-api"
+    /// Inversion of Control / Dependency Injection
+    kapt "io.micronaut:micronaut-inject-java"
+//    kaptTest "io.micronaut:micronaut-inject-java"
+    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 }

@@ -10,6 +10,6 @@ class BookGeneratorTests {
     @Test
     fun testSomeLibraryMethod() {
         val test = BookGenerator.generate("test").content
-        assertTrue(test.contains("bla test"))
+        assertTrue(test.contains("== test == bla"))
     }
 }

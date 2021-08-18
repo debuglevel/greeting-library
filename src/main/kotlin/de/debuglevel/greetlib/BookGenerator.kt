@@ -3,8 +3,15 @@
  */
 package de.debuglevel.greetlib
 
+import io.micronaut.context.ApplicationContext
+
 object BookGenerator {
     fun generate(title: String): Book {
-        return Book(title, "bla $title bla $title bla")
+
+        ApplicationContext.run().use { context ->
+            val myBean = context.getBean(BookService::class.java)
+            val newTitle = myBean.formatTitle(title)
+            return Book(title, "$newTitle bla")
+        }
     }
 }
