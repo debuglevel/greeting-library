@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 
 class LibraryTest {
     @Test fun testSomeLibraryMethod() {
-        val classUnderTest = Library()
-        assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'")
+        val test = BookGenerator.generate("test").content
+        assertTrue(test.contains("bla test"))
     }
 }
